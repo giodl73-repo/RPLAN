@@ -2,6 +2,8 @@
 
 **Reusable district-plan package, IO, audit, and CLI contracts.**
 
+**Series:** [Election Systems](https://github.com/giodl73-repo/giodl73-repo/blob/main/series/election-systems.md).
+
 RPLAN is the neutral home for district-plan interchange crates that should be
 usable by BISECT, RCOUNT, CROP, and other civic tools without depending on the
 BISECT application workspace.
