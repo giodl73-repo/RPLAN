@@ -1,0 +1,22 @@
+[package]
+name = "rplan-cli"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "RPLAN command-line tools"
+
+[[bin]]
+name = "rplan"
+path = "src/main.rs"
+
+[dependencies]
+rplan-audit = { path = "../rplan-audit" }
+rplan-io = { path = "../rplan-io" }
+clap.workspace = true
+serde_json.workspace = true
+anyhow.workspace = true
+chrono = { version = "0.4", default-features = false, features = ["clock"] }
+
+[dev-dependencies]
+tempfile.workspace = true

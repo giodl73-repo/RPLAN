@@ -1,0 +1,26 @@
+[workspace]
+members = [
+    "crates/rplan-core",
+    "crates/rplan-io",
+    "crates/rplan-audit",
+    "crates/rplan-cli",
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["Gio Della-Libera"]
+license = "MIT"
+repository = "https://github.com/giodl73-repo/RPLAN"
+
+[workspace.dependencies]
+anyhow = "1"
+chrono = { version = "0.4", default-features = false, features = ["clock"] }
+clap = { version = "4", features = ["derive"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+tempfile = "3"
+thiserror = "2"
+

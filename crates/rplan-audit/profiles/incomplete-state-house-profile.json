@@ -1,0 +1,23 @@
+{
+  "schema_version": "legal-profile-v1",
+  "profile_id": "",
+  "jurisdiction": "WA",
+  "chamber": "state-house",
+  "year": 2020,
+  "population_tolerance": {
+    "type": "unspecified"
+  },
+  "contiguity_required": true,
+  "county_split_rule": {
+    "type": "not-evaluated"
+  },
+  "municipal_split_rule": {
+    "type": "not-evaluated"
+  },
+  "nesting_rule": {
+    "type": "not-evaluated"
+  },
+  "vra_policy": {
+    "type": "not-evaluated"
+  }
+}

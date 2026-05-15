@@ -1,0 +1,24 @@
+{
+  "schema_version": "legal-profile-v1",
+  "profile_id": "US_CONGRESSIONAL_PROJECT_V1",
+  "jurisdiction": "US",
+  "chamber": "congressional",
+  "year": 2020,
+  "population_tolerance": {
+    "type": "exact-ppm",
+    "max_deviation_ppm": 5000
+  },
+  "contiguity_required": true,
+  "county_split_rule": {
+    "type": "count-only"
+  },
+  "municipal_split_rule": {
+    "type": "not-evaluated"
+  },
+  "nesting_rule": {
+    "type": "not-evaluated"
+  },
+  "vra_policy": {
+    "type": "not-evaluated"
+  }
+}

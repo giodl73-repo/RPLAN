@@ -1,0 +1,15 @@
+[package]
+name = "rplan-audit"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "Generic RPLAN audit checks and certificate generation"
+
+[dependencies]
+rplan-core = { path = "../rplan-core" }
+rplan-io = { path = "../rplan-io" }
+serde.workspace = true
+serde_json.workspace = true
+sha2.workspace = true
+thiserror.workspace = true

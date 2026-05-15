@@ -1,0 +1,13 @@
+[package]
+name = "rplan-io"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "RPLAN v0.2/v0.1 read-write and context serialization"
+
+[dependencies]
+rplan-core = { path = "../rplan-core" }
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
