@@ -56,6 +56,9 @@ cargo run -p rplan-cli -- --help
 
 ## Specs
 
+- [`docs\compatibility.md`](docs/compatibility.md) defines the protected
+  pre-1.0 package, hash, audit, and IO contracts plus the mandatory RCOUNT
+  downstream rehearsal.
 - [`docs\specs\rplan-foundation.md`](docs/specs/rplan-foundation.md) records the
   extraction boundary.
 - `context\waves\` tracks implementation waves and pulse history.
