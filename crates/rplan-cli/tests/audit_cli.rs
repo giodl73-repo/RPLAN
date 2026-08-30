@@ -56,6 +56,13 @@ fn run_grid3x3_valid_with_context(context_path: &str) -> std::process::Output {
         .unwrap()
 }
 
+fn assert_json_matches_fixture(stdout: &[u8], fixture: &str) {
+    let actual: serde_json::Value = serde_json::from_slice(stdout).expect("command stdout is JSON");
+    let expected: serde_json::Value =
+        serde_json::from_str(fixture).expect("golden certificate fixture is JSON");
+    assert_eq!(actual, expected);
+}
+
 fn path_context() -> &'static str {
     include_str!("../../rplan-io/src/fixtures/path5.rctx")
 }
@@ -250,9 +257,9 @@ fn grid3x3_valid_audit_matches_golden_certificate() {
         "stderr: {}",
         String::from_utf8_lossy(&output.stderr)
     );
-    assert_eq!(
-        String::from_utf8(output.stdout).unwrap().trim(),
-        include_str!("../../rplan-audit/fixtures/grid3x3-valid-certificate.json").trim()
+    assert_json_matches_fixture(
+        &output.stdout,
+        include_str!("../../rplan-audit/fixtures/grid3x3-valid-certificate.json"),
     );
 }
 
@@ -274,9 +281,9 @@ fn grid3x3_disconnected_audit_matches_golden_certificate() {
         .unwrap();
 
     assert_eq!(output.status.code(), Some(1));
-    assert_eq!(
-        String::from_utf8(output.stdout).unwrap().trim(),
-        include_str!("../../rplan-audit/fixtures/grid3x3-disconnected-certificate.json").trim()
+    assert_json_matches_fixture(
+        &output.stdout,
+        include_str!("../../rplan-audit/fixtures/grid3x3-disconnected-certificate.json"),
     );
     assert!(String::from_utf8_lossy(&output.stderr).contains("audit failed"));
 }
@@ -297,10 +304,9 @@ fn grid3x3_missing_contiguity_audit_matches_golden_certificate() {
         .unwrap();
 
     assert_eq!(output.status.code(), Some(1));
-    assert_eq!(
-        String::from_utf8(output.stdout).unwrap().trim(),
-        include_str!("../../rplan-audit/fixtures/grid3x3-missing-contiguity-certificate.json")
-            .trim()
+    assert_json_matches_fixture(
+        &output.stdout,
+        include_str!("../../rplan-audit/fixtures/grid3x3-missing-contiguity-certificate.json"),
     );
     assert!(String::from_utf8_lossy(&output.stderr).contains("audit failed"));
 }
