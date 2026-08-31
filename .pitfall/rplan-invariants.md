@@ -83,3 +83,23 @@ failure signals.
 
 **Evidence:** `docs/compatibility.md` and
 `.roles/parliament/consumer-boundary-reviewer.md`.
+
+## RPLAN-INV-06: Authority Boundaries Are Machine-Checked
+
+**Status:** MITIGATED
+
+**Claim:** Certificate, consumer-adoption, and RCOUNT-rehearsal risks are
+encoded as a versioned authority-boundary contract and parsed by repo-local
+tests.
+
+**Why it matters:** RPLAN's strongest outputs are success-shaped certificates,
+hashes, and examples; the repo must make their non-authority explicit wherever
+downstream systems or public reports might reuse them.
+
+**Enforcement:** `crates/rplan-cli/tests/pitfall_policy.rs` parses
+`docs/authority-boundaries.v1.json` and verifies the forbidden claims and
+required upgrade evidence for `RPLAN-PF-01`, `RPLAN-PF-02`, and
+`RPLAN-PF-03`.
+
+**Evidence:** `docs/authority-boundaries.v1.json` and
+`cargo test -p rplan-cli --test pitfall_policy`.

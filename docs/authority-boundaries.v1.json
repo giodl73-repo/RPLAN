@@ -1,0 +1,65 @@
+{
+  "schema": "rplan.authority-boundaries.v1",
+  "repo": "RPLAN",
+  "purpose": "Keep RPLAN package, audit-certificate, compatibility, and consumer-rehearsal artifacts from becoming legal approval, adopted downstream contracts, or release readiness without the required owner evidence.",
+  "pitfalls": [
+    {
+      "id": "RPLAN-PF-01",
+      "status": "mitigated",
+      "boundary": "A passing audit certificate verifies only the declared profile, package hashes, context, source hashes, and lineage semantics; it is not legal approval, fairness proof, public-release approval, policy preference, or full redistricting acceptance.",
+      "not_authorized": [
+        "legal_approval",
+        "fairness_proof",
+        "public_release_approval",
+        "policy_preference",
+        "large_instance_quality_claim",
+        "full_redistricting_acceptance"
+      ],
+      "required_before_upgrade": [
+        "downstream_publication_owner",
+        "legal_review",
+        "fairness_review",
+        "real_data_quality_review",
+        "release_review"
+      ]
+    },
+    {
+      "id": "RPLAN-PF-02",
+      "status": "mitigated",
+      "boundary": "RPLAN-local build, test, documentation, compatibility, or submodule success does not mean BISECT, RCOUNT, CROP, or future consumers have adopted a dependency contract.",
+      "not_authorized": [
+        "bisect_dependency_rewire_complete",
+        "rcount_integration_complete",
+        "crop_adoption_complete",
+        "consumer_contract_adopted",
+        "customer_ready_dependency_status"
+      ],
+      "required_before_upgrade": [
+        "consumer_owned_change",
+        "consumer_validation_pass",
+        "migration_notes",
+        "consumer_boundary_review",
+        "tracker_pointer_snapshot"
+      ]
+    },
+    {
+      "id": "RPLAN-PF-03",
+      "status": "mitigated",
+      "boundary": "Foundation changes that affect APIs, hashes, package formats, or audit semantics are not release-ready after RPLAN-local tests alone; affected changes require the RCOUNT rehearsal or an explicit scoped-out rationale.",
+      "not_authorized": [
+        "rplan_local_tests_only_release",
+        "hash_contract_ready_without_rcount",
+        "package_format_ready_without_rcount",
+        "audit_semantics_ready_without_rcount",
+        "portfolio_pointer_promotion_without_rehearsal"
+      ],
+      "required_before_upgrade": [
+        "affected_foundation_tests",
+        "rcount_rehearsal_pass",
+        "or_explicit_rehearsal_scope_out",
+        "consumer_boundary_review",
+        "compatibility_policy_update"
+      ]
+    }
+  ]
+}

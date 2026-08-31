@@ -2,7 +2,7 @@
 
 ## RPLAN-PF-01: Certificate Pass Becomes Legal Approval
 
-**Status:** OPEN
+**Status:** MITIGATED
 
 **Pattern:** A passing RPLAN audit certificate is presented as legal
 certification, fairness proof, public release approval, or full redistricting
@@ -35,19 +35,21 @@ the civic claim.
 **Detection difficulty:** The word `pass` is operationally useful but easy to
 over-read outside the exact check/profile context.
 
-**Structural solution:** Keep certificate disclaimers, role review, and
-consumer-owned release language visible in every public promotion path.
+**Structural solution:** Keep the authority-boundary contract, certificate
+disclaimers, role review, and consumer-owned release language visible in every
+public promotion path.
 
 **Evidence:** `docs/examples/u20-plan-audit-certificates/README.md`,
 `docs/examples/rplan-golden-packages/README.md`,
-`docs/examples/rplan-benchmark-packages/README.md`, and
+`docs/examples/rplan-benchmark-packages/README.md`,
+`docs/authority-boundaries.v1.json`, and
 `.roles/parliament/audit-certificate-auditor.md`.
 
 **Test:** `cargo test -p rplan-cli --test pitfall_policy`.
 
 ## RPLAN-PF-02: Consumer Pending Work Becomes Adopted Contract
 
-**Status:** OPEN
+**Status:** MITIGATED
 
 **Pattern:** Pending BISECT dependency rewire or RCOUNT integration work is
 treated as already adopted because RPLAN has a standalone workspace and public
@@ -79,17 +81,19 @@ repo owners.
 **Detection difficulty:** RPLAN has working crates and examples, but the active
 wave still marks consumer rewires pending.
 
-**Structural solution:** Keep the pending pulses visible until consumer repos
-own the dependency change and their validation passes.
+**Structural solution:** Keep the authority-boundary contract and pending
+pulses visible until consumer repos own the dependency change and their
+validation passes.
 
 **Evidence:** `context/waves/2026-05-15-rplan-foundation/WAVE.md`,
-`docs/compatibility.md`, and `.roles/parliament/consumer-boundary-reviewer.md`.
+`docs/compatibility.md`, `docs/authority-boundaries.v1.json`, and
+`.roles/parliament/consumer-boundary-reviewer.md`.
 
 **Test:** `cargo test -p rplan-cli --test pitfall_policy`.
 
 ## RPLAN-PF-03: RCOUNT Rehearsal Is Skipped
 
-**Status:** OPEN
+**Status:** MITIGATED
 
 **Pattern:** A change to public APIs, hashes, package formats, or audit
 semantics is considered ready after RPLAN-local tests only, without the required
@@ -118,10 +122,11 @@ verification behavior can break after the RPLAN pointer is promoted.
 **Detection difficulty:** RPLAN-local tests are broad, so downstream breakage
 can look unlikely until RCOUNT compiles or verifies real package bridges.
 
-**Structural solution:** Treat the RCOUNT rehearsal in `docs/compatibility.md`
-as a release gate for affected foundation changes.
+**Structural solution:** Treat the RCOUNT rehearsal in
+`docs/authority-boundaries.v1.json` and `docs/compatibility.md` as a release
+gate for affected foundation changes.
 
-**Evidence:** `docs/compatibility.md` and
+**Evidence:** `docs/authority-boundaries.v1.json`, `docs/compatibility.md`, and
 `docs/examples/rcount-golden-packages/README.md`.
 
 **Test:** `cargo test -p rplan-cli --test pitfall_policy`.
