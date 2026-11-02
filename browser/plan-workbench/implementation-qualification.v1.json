@@ -1,0 +1,117 @@
+{
+  "schema": "rplan.browser-implementation-qualification.v1",
+  "checked_at_utc": "2026-11-02T18:41:28.464501+00:00",
+  "scope": "Qualified software implementation on the named branch/PR checkout. Default deployment and fresh live publication remain separate gates; no legal/fairness/authenticity/consumer adoption claim.",
+  "tool": "GitHub CLI 2.103.3",
+  "auth_context": "Stored giodl73-repo credentials; GH_TOKEN unset; gh api user verified giodl73-repo.",
+  "action": "gh run view41500914967 and gh run download --name plan-workbench-qualification; compare full native response strings and CLI controls with the locally qualified source.",
+  "repository": "giodl73-repo/RPLAN",
+  "branch_head": "cb54f1cb0c486227e0ff850a8a51efaadc530cc8",
+  "qualified_pr_checkout_commit": "9f447f6ed4dd1fa2c0171152384259b6c7f9f652",
+  "run_id": 41500914967,
+  "url": "https://github.com/giodl73-repo/RPLAN/actions/runs/41500914967",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "id": 125467842187,
+      "name": "build",
+      "conclusion": "success"
+    },
+    {
+      "id": 125471884271,
+      "name": "deploy",
+      "conclusion": "skipped"
+    }
+  ],
+  "packaged_browser_cases": 27,
+  "source_replay": {
+    "commit": "9f447f6ed4dd1fa2c0171152384259b6c7f9f652",
+    "source_files": 842,
+    "original_native_tests": 70,
+    "adapter_tests": 9,
+    "native_outcomes_identical": 36,
+    "independent_cli_controls_identical": 18,
+    "current_original_cli_byte_controls_identical": 27,
+    "rcount_rehearsal": {
+      "checked_at_utc": "2026-11-02T18:34:44.136670+00:00",
+      "consumer_repository": "https://github.com/giodl73-repo/RCOUNT.git",
+      "consumer_commit": "3849b249b6d4f3016d387faef936d82899527141",
+      "tests": [
+        {
+          "name": "aggregates_summary_basic_into_rplan_districts",
+          "actual_tests_passed": 1
+        },
+        {
+          "name": "aggregation_transcript_records_matching_rctx_reference",
+          "actual_tests_passed": 1
+        },
+        {
+          "name": "aggregation_rejects_declared_crosswalk_hash_drift",
+          "actual_tests_passed": 1
+        }
+      ],
+      "dependency_resolution": [
+        {
+          "name": "rplan-core",
+          "version": "0.1.0",
+          "source": "current supplied RPLAN source root",
+          "manifest_git_text_sha256": "b82079ad9628a5772c817a86a8fb4d488ba239d5a21d84670ed3db6ac6efc555"
+        },
+        {
+          "name": "rplan-io",
+          "version": "0.1.0",
+          "source": "current supplied RPLAN source root",
+          "manifest_git_text_sha256": "bf035baa2768780924cffe16ff2729c0cc65244759d55ea0cc266ccbd26994ba"
+        }
+      ],
+      "cargo_profile": "rplan-consumer",
+      "normal_profile_not_overwritten": true,
+      "scope": "Local compatibility only; no production dependency adoption or BISECT change."
+    },
+    "browser_task_and_recovery_checks": 25,
+    "cargo_profile": "rplan-replay",
+    "binary_identity_claim": false,
+    "outside_git_path_with_spaces_verified": true
+  },
+  "native_wasm_full_response_strings": 36,
+  "each_native_repeated": 2,
+  "independent_original_cli_controls": 18,
+  "original_native_tests": 70,
+  "adapter_tests": 9,
+  "frozen_original_cli_controls": 27,
+  "local_pre_post_cli_sha256": "bc6e19412c7b87905376f22105a58a31c3885dfc989318812b031597b2a1909d",
+  "runtime_windows_bytes": 819581,
+  "served_files": 94,
+  "source_files": 842,
+  "dependency_notice_groups": 33,
+  "rust_notices": 12,
+  "local_post_replay_original70_tests": "pass",
+  "local_preview": {
+    "browser": "149.0.7827.55",
+    "platform": "win32",
+    "observations": [
+      {
+        "name": "desktop",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "startup_ms": 183,
+        "page_errors": [],
+        "horizontal_overflow": false
+      },
+      {
+        "name": "mobile",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "startup_ms": 139,
+        "page_errors": [],
+        "horizontal_overflow": false
+      }
+    ],
+    "scope": "Two local packaged synthetic-example observations; not a general performance claim."
+  },
+  "review_posture": "Agent/automated checks through the three local role lenses; not independent human sign-off."
+}

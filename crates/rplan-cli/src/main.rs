@@ -307,41 +307,12 @@ fn validate_profile_applicability(
     plan_chamber: &Chamber,
     profile: &LegalProfile,
 ) -> Result<()> {
-    if &profile.chamber != plan_chamber {
-        anyhow::bail!(
-            "legal profile chamber {:?} does not match plan chamber {:?}",
-            profile.chamber,
-            plan_chamber
-        );
-    }
-    if profile.jurisdiction != "US" && profile.jurisdiction != document.metadata.jurisdiction {
-        anyhow::bail!(
-            "legal profile jurisdiction '{}' does not match plan jurisdiction '{}'",
-            profile.jurisdiction,
-            document.metadata.jurisdiction
-        );
-    }
-    if let Some(plan_year) = document.plan.units.year {
-        if profile.year != plan_year {
-            anyhow::bail!(
-                "legal profile year {} does not match plan year {}",
-                profile.year,
-                plan_year
-            );
-        }
-    }
-    Ok(())
+    rplan_audit::validate_profile_applicability(document, plan_chamber, profile)
+        .map_err(anyhow::Error::msg)
 }
 
 fn parse_chamber(value: &str) -> Result<Chamber> {
-    match value {
-        "congressional" => Ok(Chamber::Congressional),
-        "state-house" => Ok(Chamber::StateHouse),
-        "state-senate" => Ok(Chamber::StateSenate),
-        "local" => Ok(Chamber::Local),
-        "custom" => Ok(Chamber::Custom("custom".to_string())),
-        other => anyhow::bail!("unknown chamber '{other}'"),
-    }
+    rplan_audit::parse_plan_chamber(value).map_err(anyhow::Error::msg)
 }
 
 #[cfg(test)]

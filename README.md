@@ -8,6 +8,24 @@
 [ROLES](https://github.com/giodl73-repo/ROLES), the `.roles` convention for
 repository-local review panels.
 
+## Inspect a supplied plan in the browser
+
+[Open the plan workbench](https://giodl73-repo.github.io/RPLAN/) to open/edit
+RPLAN plans and optional RCTX context, supply a profile, select native audit
+constraints and inspect every check, warning and witness. You can verify a
+supplied certificate and export original bytes, current/accepted requests,
+complete native reports, exact certificates and normalized plan/context files.
+The connected/disconnected synthetic examples work without an account or CLI.
+
+A native pass is not legal approval, fairness, data authenticity, public-release
+approval or consumer adoption. Profiles, source hashes, lineage and timestamps
+remain caller assertions. Certificate verification checks declared identities;
+it does not rerun an audit. See [native behavior and limits](browser/plan-workbench/MODEL.md),
+[build/source replay](browser/plan-workbench/BUILD.md),
+[complete source scope](browser/plan-workbench/SOURCE-SCOPE.md) and the
+[browser qualification wave](context/waves/2026-11-02-plan-wasm/WAVE.md).
+Implementation, hosted/default deployment and live qualification are separate gates.
+
 ## R package family
 
 RPLAN is the district-plan package layer in a reusable civic-evidence family:

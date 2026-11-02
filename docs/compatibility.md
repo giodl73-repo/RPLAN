@@ -78,3 +78,12 @@ or district-total failures expose serialized or behavioral drift.
 
 RPLAN foundation changes are not ready until the affected foundation tests and
 the RCOUNT rehearsal pass.
+
+## Portable profile applicability helpers
+
+`rplan-audit::parse_plan_chamber` and `validate_profile_applicability` expose the
+original CLI chamber/profile checks to portable hosts. The CLI delegates those
+same checks; package schemas, hash projections, audit/certificate algorithms,
+root manifests/lock and original tests remain protected. Browser hosts must
+identify caller profile/provenance assertions and their own resource admission.
+These helpers do not determine applicable law or imply downstream adoption.
