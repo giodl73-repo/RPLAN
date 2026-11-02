@@ -95,5 +95,7 @@
     "crates/rplan-cli/src/main.rs",
     "crates/rplan-audit/src/lib.rs"
   ],
-  "constraint": "Only delegate existing private CLI chamber/profile checks into shared portable audit helpers. All original tests and remaining foundation files retain canonical Git text; capture CLI bytes before/after."
+  "constraint": "Only delegate existing private CLI chamber/profile checks into shared portable audit helpers. All original tests and remaining foundation files retain canonical Git text; capture CLI bytes before/after.",
+  "original_cli_inline_tests_sha256": "b1b968ae1c97689921e2801666d12cb1af5ccd9871ffb618f6974793d80172c6",
+  "original_cli_before_profile_helpers_sha256": "571efe37c978335a96873f8cc34280daf9c3e83ece18300f3a1291ee4ade0d62"
 }

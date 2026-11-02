@@ -3,6 +3,9 @@ use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, BTreeSet, VecDeque};
 use thiserror::Error;
 
+mod profile;
+pub use profile::{parse_plan_chamber, validate_profile_applicability};
+
 pub const AUDIT_CERTIFICATE_SCHEMA_VERSION: &str = "audit-certificate-v1";
 pub const LEGAL_PROFILE_SCHEMA_VERSION: &str = "legal-profile-v1";
 
