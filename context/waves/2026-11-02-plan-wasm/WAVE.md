@@ -13,7 +13,8 @@ Consumer Boundary Reviewer: require the three documented RCOUNT rehearsals;
 claim no BISECT rewiring or downstream adoption. These are agent review lenses,
 not independent human sign-off.
 
-WP-BROWSER-001 is open: first capture CLI controls and commit scope, then extract
-portable profile applicability, build the bounded companion, ship own-file UX,
-and qualify source/hosted/default/live delivery. Original foundation migration
+WP-BROWSER-001 software implementation and local/hosted qualification pass at
+cb54f1c; see pulse-03 and browser/plan-workbench/implementation-qualification.v1.json.
+The complete work package remains open for final candidate/default deployment,
+fresh live browser/exact artifact qualification and the explicit TRACKER snapshot. Original foundation migration
 pulses remain separately scoped; no BISECT application change is included.
