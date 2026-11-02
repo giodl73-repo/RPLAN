@@ -1,0 +1,94 @@
+name: Plan workbench Rust WASM Pages
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: rplan-plan-pages-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      CARGO_TARGET_DIR: ${{ github.workspace }}/target/cargo
+    steps:
+      - uses: actions/checkout@v7
+      - uses: dtolnay/rust-toolchain@1.95.0
+        with:
+          targets: wasm32-unknown-unknown
+          components: rustfmt, clippy
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: browser/plan-workbench/package-lock.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: |
+            . -> target/cargo
+            browser/plan-workbench -> ../../target/cargo
+      - name: Original foundation, adapter and strict native WASM qualification
+        run: |
+          cargo fmt --check
+          cargo test --workspace --locked
+          cargo clippy --workspace --all-targets --locked -- -D warnings
+          cargo clippy -p rplan-core -p rplan-io -p rplan-audit --lib --target wasm32-unknown-unknown --locked -- -D warnings
+          cargo run -p rplan-cli --locked -- --help
+          cargo fmt --manifest-path browser/plan-workbench/Cargo.toml -- --check
+          cargo test --manifest-path browser/plan-workbench/Cargo.toml --all-targets --locked
+          cargo clippy --manifest-path browser/plan-workbench/Cargo.toml --all-targets --locked -- -D warnings
+          cargo clippy --manifest-path browser/plan-workbench/Cargo.toml --lib --target wasm32-unknown-unknown --locked -- -D warnings
+      - name: Install pinned packaging tool
+        run: cargo install wasm-bindgen-cli --version 0.2.127 --locked
+      - name: Build native WASM and compare original CLI semantics
+        run: python browser/plan-workbench/build-prototype.py --bindgen "$HOME/.cargo/bin/wasm-bindgen"
+      - name: Rehearse pinned RCOUNT against current RPLAN source
+        run: python browser/plan-workbench/rehearse-consumer.py
+      - name: Install browser tools
+        working-directory: browser/plan-workbench
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+      - name: Own-input and real recovery qualification
+        working-directory: browser/plan-workbench
+        run: npm run test:pages
+      - name: Package exact complete source and original notices
+        run: python browser/plan-workbench/package-site.py
+      - name: Complete packaged delivery
+        run: python browser/plan-workbench/verify-release.py
+      - name: Rebuild delivered source outside Git and rehearse its consumer
+        run: python browser/plan-workbench/verify-source.py --bindgen "$HOME/.cargo/bin/wasm-bindgen"
+      - name: Original checkout tests still work after temporary source replay
+        run: cargo test --workspace --locked
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: plan-workbench-qualification
+          include-hidden-files: true
+          path: |
+            browser/plan-workbench/.cache/
+            browser/plan-workbench/test-results/
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: target/plan-release/RPLAN
+  deploy:
+    if: github.ref == 'refs/heads/master'
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -33,6 +33,9 @@ The companion refuses whole operations before native work at1MiB raw request,
 256KiB plan/context/certificate,32KiB profile/lineage,768KiB aggregate text,
 2048 units,128 districts,8192 graph edges/array entries,65536 JSON nodes and
 16KiB scalar strings/object keys. Native serde's recursion bound remains active.
+Claimed contiguity/split/geometry witness counts are capped at2048 before
+platform-sized integer decoding. Arbitrary lineage/extension integers remain
+exact in Rust-produced exports, including values above JavaScript precision.
 Population magnitude is at most10^12 so native i64 arithmetic stays in range.
 Native auditing assumes compatible indexed arrays; unequal plan/context unit
 cardinality is refused before invoking it. These are browser admission limits,

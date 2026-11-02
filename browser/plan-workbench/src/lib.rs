@@ -8,6 +8,8 @@ use serde_json::{json, Value};
 use wasm_bindgen::prelude::*;
 
 pub const MAX_REQUEST_BYTES: usize = 1_048_576;
+const MAX_DOCUMENT_BYTES: usize = 262_144;
+const MAX_POLICY_BYTES: usize = 32_768;
 const MAX_REPORT_BYTES: usize = 2_097_152;
 const SCOPE: &str = "Native package/audit/hash diagnostics over supplied data. Caller profiles, timestamps, lineage, sources and provenance are unverified. A passing result is not legal approval, fairness, data authenticity, release approval or consumer adoption. Certificate verification checks declared identities; it does not rerun the audit.";
 
@@ -150,11 +152,11 @@ fn report(input: &str) -> Result<Value, Value> {
     let request: Request =
         serde_json::from_str(input).map_err(|e| issue("refused", "request", e))?;
     let fields = [
-        (&request.plan, 262_144),
-        (&request.context, 262_144),
-        (&request.profile, 32_768),
-        (&request.certificate, 262_144),
-        (&request.lineage, 32_768),
+        (&request.plan, MAX_DOCUMENT_BYTES),
+        (&request.context, MAX_DOCUMENT_BYTES),
+        (&request.profile, MAX_POLICY_BYTES),
+        (&request.certificate, MAX_DOCUMENT_BYTES),
+        (&request.lineage, MAX_POLICY_BYTES),
     ];
     if fields
         .iter()
@@ -292,7 +294,28 @@ fn report(input: &str) -> Result<Value, Value> {
             .certificate
             .as_deref()
             .ok_or_else(|| issue("refused", "request", "Verification requires a certificate"))?;
-        bounded_json(raw, "certificate")?;
+        let value = bounded_json(raw, "certificate")?;
+        if let Some(checks) = value.get("checks").and_then(Value::as_array) {
+            for witness in checks
+                .iter()
+                .filter_map(|c| c.get("witnesses").and_then(Value::as_array))
+                .flatten()
+            {
+                let count = match witness.get("type").and_then(Value::as_str) {
+                    Some("contiguity") => witness.get("component_count"),
+                    Some("split") => witness.get("unit_count"),
+                    Some("geometry") => witness.get("unit_geometry_hash_count"),
+                    _ => None,
+                };
+                if count.and_then(Value::as_u64).is_some_and(|n| n > 2048) {
+                    return Err(issue(
+                        "refused",
+                        "certificate",
+                        "Claimed witness count exceeds 2048",
+                    ));
+                }
+            }
+        }
         let certificate: AuditCertificate =
             serde_json::from_str(raw).map_err(|e| native_error("certificate", e))?;
         let verified = verify_audit_certificate(
@@ -307,6 +330,13 @@ fn report(input: &str) -> Result<Value, Value> {
         response["certificate"] = json!(certificate);
     }
     Ok(response)
+}
+
+#[wasm_bindgen]
+pub fn engine_info() -> String {
+    json!({"constraints":[AuditConstraint::PlanShape,AuditConstraint::Population,AuditConstraint::Contiguity,AuditConstraint::Splits,AuditConstraint::Vra,AuditConstraint::Geometry],
+        "file_limits":{"plan":MAX_DOCUMENT_BYTES,"context":MAX_DOCUMENT_BYTES,"profile":MAX_POLICY_BYTES,"certificate":MAX_DOCUMENT_BYTES,"lineage":MAX_POLICY_BYTES},
+        "request_bytes":MAX_REQUEST_BYTES,"report_bytes":MAX_REPORT_BYTES,"scope":SCOPE}).to_string()
 }
 
 #[wasm_bindgen]

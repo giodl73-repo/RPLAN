@@ -208,3 +208,23 @@ fn exact_certificate_export_preserves_integers_above_javascript_precision() {
         report["certificate"]["content_hash"]
     );
 }
+
+#[test]
+fn claimed_witness_cardinality_is_bounded_before_platform_usize_decoding() {
+    let mut certificate: Value = serde_json::from_str(include_str!(
+        "../../../crates/rplan-audit/fixtures/grid3x3-disconnected-certificate.json"
+    ))
+    .unwrap();
+    for check in certificate["checks"].as_array_mut().unwrap() {
+        for witness in check["witnesses"].as_array_mut().unwrap() {
+            if witness["type"] == "contiguity" {
+                witness["component_count"] = json!(u64::MAX);
+            }
+        }
+    }
+    let response = run(
+        &json!({"mode":"verify","certificate":certificate.to_string(),"plan":PLAN,"context":CONTEXT}),
+    );
+    assert_eq!(response["kind"], "refused");
+    assert_eq!(response["message"], "Claimed witness count exceeds 2048");
+}

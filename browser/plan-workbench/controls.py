@@ -39,5 +39,10 @@ def requests(root):
     cases.append({'mode':'verify','certificate':text(folder+'grid3x3-valid-certificate.json')})
     certificate=json.loads(text(folder+'grid3x3-valid-certificate.json'));certificate['result']='fail'
     cases.append({'mode':'verify','certificate':json.dumps(certificate),'plan':base['plan'],'context':base['context']})
+    certificate=json.loads(text(folder+'grid3x3-disconnected-certificate.json'))
+    for check in certificate['checks']:
+        for witness in check['witnesses']:
+            if witness['type']=='contiguity':witness['component_count']=18446744073709551615
+    cases.append({'mode':'verify','certificate':json.dumps(certificate),'plan':base['plan'],'context':base['context']})
     cases+=['{',' '*1048577]
     return cases

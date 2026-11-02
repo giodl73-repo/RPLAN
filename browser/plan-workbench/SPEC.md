@@ -37,7 +37,7 @@ fields and native conversions must be disclosed and complete raw input retained.
 Use a separate locked Rust/WASM companion and real module worker. Bound the raw
 request before parsing (1MiB), each plan/context (256KiB), profile/lineage (32KiB),
 certificate (256KiB), total admitted text (768KiB), JSON depth (native serde bound),
-units (2048), districts (128), edges (8192), generic arrays (8192), scalar strings
+units/known claimed witness counts (2048), districts (128), edges (8192), generic arrays (8192), scalar strings
 (16KiB), whole report (2MiB) and actual compiled memory (64MiB). Population absolute
 values at most10^12 keep native i64 sums/differences safe within those unit bounds.
 Reject unsafe plan/context array cardinality combinations before native auditing,

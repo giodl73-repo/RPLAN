@@ -1,0 +1,1 @@
+{"name":"rplan-plan-workbench-qualification","private":true,"type":"module","scripts":{"test:pages":"playwright test inspector.spec.js recovery.spec.js","test:release":"playwright test"},"devDependencies":{"@playwright/test":"1.61.1"}}
