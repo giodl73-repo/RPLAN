@@ -1,3 +1,9 @@
 target/
 .rplan/
 
+
+/browser/plan-workbench/.cache/
+/browser/plan-workbench/node_modules/
+/browser/plan-workbench/test-results/
+/browser/plan-workbench/playwright-report/
+__pycache__/

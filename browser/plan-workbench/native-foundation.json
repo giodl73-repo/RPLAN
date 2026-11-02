@@ -1,0 +1,99 @@
+{
+  "commit": "531a8a9",
+  "original_tests": 70,
+  "files": [
+    {
+      "path": "Cargo.lock",
+      "sha256": "7402e200765082ffc60233277f71a69d0457de6421ad4a442c54993196dbd612"
+    },
+    {
+      "path": "Cargo.toml",
+      "sha256": "b535253c79c4211ca260af124754e2a4345428221d413aa262c4494fa421669c"
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "f6234867426ba87cee76105c748459ffef97afcb10707a015d8631f33ebc9286"
+    },
+    {
+      "path": "crates/rplan-audit/Cargo.toml",
+      "sha256": "09bd569f1b5ef5f9929effa699b094bcbb0f964230cc58f84bbafeeba1cc2666"
+    },
+    {
+      "path": "crates/rplan-audit/fixtures/grid3x3-disconnected-certificate.json",
+      "sha256": "f2365f52b0812c1af8a76321119736bb3065b020f6ac9c7c168438f3be0cb507"
+    },
+    {
+      "path": "crates/rplan-audit/fixtures/grid3x3-disconnected.rplan",
+      "sha256": "edb9c225bb9362ec639f54eb317e5c42c9bdc65cd613d83f6d5c0ff1793a3e78"
+    },
+    {
+      "path": "crates/rplan-audit/fixtures/grid3x3-missing-contiguity-certificate.json",
+      "sha256": "486b603b1ff36cca42a53e8cd3d4a25065b992913bfd6783b9013de1a0177d4c"
+    },
+    {
+      "path": "crates/rplan-audit/fixtures/grid3x3-valid-certificate.json",
+      "sha256": "3544c40ff67229b66557bc7a4164350339d01e191da4d401bb89c5ab0993ae0f"
+    },
+    {
+      "path": "crates/rplan-audit/fixtures/grid3x3-valid.rplan",
+      "sha256": "354470c7a18e0407c6498a9eb6518f7369d241cdfc7754a520b968e4e7b00b27"
+    },
+    {
+      "path": "crates/rplan-audit/fixtures/grid3x3.rctx",
+      "sha256": "107c60b317b24e328c90a69ab2eace24ce4e42e9122f38b3a224daef9632e2e2"
+    },
+    {
+      "path": "crates/rplan-audit/profiles/incomplete-state-house-profile.json",
+      "sha256": "0c7b749fd8df2df2efecaed59f054baa7dfa5d1aa1729e6be6da19708e4d36df"
+    },
+    {
+      "path": "crates/rplan-audit/profiles/us-congressional-project-v1.json",
+      "sha256": "c61801603ee38e64eaee7472ccd2f1903e4ec20da24dcda032a20ece380a6776"
+    },
+    {
+      "path": "crates/rplan-audit/src/lib.rs",
+      "sha256": "10c6d38d26661a9b3da739f1429e81339927d7c104ccc7f04717be5837eb91de"
+    },
+    {
+      "path": "crates/rplan-cli/Cargo.toml",
+      "sha256": "22e2834ca25a9cec5483b73f24c2e9abf0a8307166a805f8a5e277b6aaa83d6d"
+    },
+    {
+      "path": "crates/rplan-cli/src/main.rs",
+      "sha256": "baeb15fafde1590b2ba3ac8400852618adbdaf0892249c92806b5828e3f9a009"
+    },
+    {
+      "path": "crates/rplan-cli/tests/audit_cli.rs",
+      "sha256": "1fd4cb8f2a2ca26498ea6908f2ab1a5a045ecb6ed8766b098af35b434404c31f"
+    },
+    {
+      "path": "crates/rplan-cli/tests/pitfall_policy.rs",
+      "sha256": "e992d775faf7bfc19190c7e15f86454ec79148579b64a33cbc6d2a0bea1b015a"
+    },
+    {
+      "path": "crates/rplan-core/Cargo.toml",
+      "sha256": "b82079ad9628a5772c817a86a8fb4d488ba239d5a21d84670ed3db6ac6efc555"
+    },
+    {
+      "path": "crates/rplan-core/src/lib.rs",
+      "sha256": "23f5db6a1fcd6af61aae631e92c2d89916a06aabeff0f42cb05aba1819807919"
+    },
+    {
+      "path": "crates/rplan-io/Cargo.toml",
+      "sha256": "bf035baa2768780924cffe16ff2729c0cc65244759d55ea0cc266ccbd26994ba"
+    },
+    {
+      "path": "crates/rplan-io/src/fixtures/path5.rctx",
+      "sha256": "33da8ef5566e01f1dc109a540ff6f6d40bc05112d9b199137a639573f155f55e"
+    },
+    {
+      "path": "crates/rplan-io/src/lib.rs",
+      "sha256": "6a519f8a63d2a3d9c1f1df2df86991c9e8e97ade1c3b20779d7e5f055e174cbb"
+    }
+  ],
+  "allowed_implementation_changes": [
+    "crates/rplan-cli/src/main.rs",
+    "crates/rplan-audit/src/lib.rs"
+  ],
+  "constraint": "Only delegate existing private CLI chamber/profile checks into shared portable audit helpers. All original tests and remaining foundation files retain canonical Git text; capture CLI bytes before/after."
+}

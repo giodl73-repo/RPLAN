@@ -4,7 +4,11 @@ RPLAN work is organized into small waves and pulses.
 
 ## Active wave
 
-- `2026-05-15-rplan-foundation`
+- `2026-11-02-plan-wasm` — supplied plan audit and certificate verification.
+
+## Foundation migration history
+
+- `2026-05-15-rplan-foundation` — downstream rewiring/adoption remains separately owned.
 
 ## Protocol
 
